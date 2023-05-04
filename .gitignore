@@ -12,3 +12,5 @@ server/upload/avatars
 
 client/dist
 server/dist
+
+server/package-lock.json
