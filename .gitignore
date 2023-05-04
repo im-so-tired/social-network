@@ -1,0 +1,14 @@
+.idea
+client/.idea
+server/.idea
+
+client/node_modules
+server/node_modules
+
+client/.env
+server/.env
+
+server/upload/avatars
+
+client/dist
+server/dist
