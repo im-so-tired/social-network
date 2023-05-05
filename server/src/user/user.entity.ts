@@ -9,9 +9,9 @@ export class UserEntity extends Base {
   email: string;
   @Column()
   password: string;
-  @Column({ name: 'first_name' })
+  @Column()
   firstName: string;
-  @Column({ name: 'last_name' })
+  @Column()
   lastName: string;
   @Column({ default: '', name: 'avatar_path' })
   avatarPath: string;
@@ -26,4 +26,6 @@ export class UserEntity extends Base {
   @OneToMany(() => PostsEntity, (post) => post.author)
   @JoinColumn({ name: 'posts' })
   posts: PostsEntity[];
+  @Column('integer', { array: true, default: [] })
+  friends: number[];
 }

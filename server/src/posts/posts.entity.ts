@@ -11,6 +11,8 @@ export class PostsEntity extends Base {
   message: string;
   @Column({ name: 'last_update', default: Date.now(), type: 'bigint' })
   lastUpdate: number;
-  @Column({ default: 0, name: 'count_likes' })
-  countLikes: number;
+  @Column({ default: '' })
+  image: string;
+  @Column('integer', { array: true, default: [] })
+  likes: number[];
 }

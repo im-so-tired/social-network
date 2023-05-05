@@ -27,7 +27,7 @@ export class AuthService {
     const user = await this.validateUser(dto);
     const tokens = await this.issueTokenPair(user.id);
     return {
-      user: this.returnUserFields(user),
+      user: this.userService.returnUserFields(user),
       ...tokens,
     };
   }
@@ -40,16 +40,17 @@ export class AuthService {
       );
 
     const salt = await genSalt(10);
+
     const newUser = this.userRepository.create({
       ...dto,
       password: await hash(dto.password, salt),
-      avatarPath: avatar ? avatar.filename : '',
+      avatarPath: avatar ? avatar.filename : 'default-avatar.jpg',
     });
 
     const tokens = await this.issueTokenPair(newUser.id);
     const user = await this.userRepository.save(newUser);
     return {
-      user: this.returnUserFields(user),
+      user: this.userService.returnUserFields(user),
       ...tokens,
     };
   }
@@ -61,7 +62,7 @@ export class AuthService {
       const user = await this.userService.byId(result.id);
       const tokens = await this.issueTokenPair(user.id);
       return {
-        user: this.returnUserFields(user),
+        user,
         ...tokens,
       };
     } catch (error) {
@@ -91,19 +92,5 @@ export class AuthService {
     });
 
     return { refreshToken, accessToken };
-  }
-
-  returnUserFields(user: UserEntity) {
-    return {
-      id: user.id,
-      firstName: user.firstName,
-      secondName: user.lastName,
-      age: user.age,
-      email: user.email,
-      gender: user.gender,
-      city: user.city,
-      university: user.university,
-      avatarPath: user.avatarPath,
-    };
   }
 }

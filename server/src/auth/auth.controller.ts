@@ -14,6 +14,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { RegisterDto } from './dto/register.dto';
 import { GenderValidate } from '../pipes/gender.pipes';
+import { RefreshTokenDto } from './dto/refreshToken.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -48,5 +49,12 @@ export class AuthController {
   @UsePipes(new ValidationPipe())
   login(@Body() dto: LoginDto) {
     return this.authService.login(dto);
+  }
+
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Post('login/access-token')
+  async getNewTokens(@Body() dto: RefreshTokenDto) {
+    return this.authService.getNewTokens(dto);
   }
 }
