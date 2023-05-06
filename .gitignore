@@ -9,8 +9,11 @@ client/.env
 server/.env
 
 server/upload/avatars
+server/upload/attachedImages
 
 client/dist
 server/dist
 
+client/package-lock.json
 server/package-lock.json
+
