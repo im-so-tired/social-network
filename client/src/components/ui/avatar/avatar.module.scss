@@ -1,0 +1,7 @@
+.avatar {
+  img {
+    @apply rounded-full;
+    object-position: center;
+    object-fit: cover;
+  }
+}

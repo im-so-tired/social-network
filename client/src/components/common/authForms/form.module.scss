@@ -1,0 +1,19 @@
+.ageField {
+  input {
+    width: 75px;
+  }
+}
+
+
+.cityField {
+  input {
+    width: 160px;
+  }
+}
+
+.footer {
+  @apply flex justify-center;
+  button {
+    @apply py-3 mt-6 w-full py-4 text-xl;
+  }
+}

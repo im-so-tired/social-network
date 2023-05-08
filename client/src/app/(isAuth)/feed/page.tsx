@@ -1,9 +1,11 @@
 import React, { FC } from 'react'
 
+import Heading from '@/components/ui/heading/Heading'
+
 const Feed: FC = () => {
 	return (
 		<div>
-			<h1>Feed</h1>
+			<Heading>Feed</Heading>
 		</div>
 	)
 }

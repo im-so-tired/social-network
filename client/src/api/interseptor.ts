@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-export const API_URL = `${process.env.APP_URL}/api`
+export const API_URL = `${process.env.BACKEND_URL}/api`
 
 export const getContentType = (type: string = 'application/json') => {
 	return {

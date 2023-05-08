@@ -1,0 +1,35 @@
+.sidebar {
+  @apply h-[100vh];
+
+  .menu {
+    @apply bg-white rounded-common w-[280px] py-2;
+    .menuItem.active {
+      a {
+        @apply border-primary text-primary;
+      }
+    }
+  }
+
+  .menuItem {
+    @apply font-medium;
+    a {
+      @apply px-10 block w-full border-l-2;
+      border-color: transparent;
+
+      div {
+        @apply flex items-center py-5 border-b border-gray-500;
+        svg {
+          @apply mr-4;
+        }
+      }
+    }
+
+    &:last-child {
+      a {
+        div {
+          @apply border-none;
+        }
+      }
+    }
+  }
+}

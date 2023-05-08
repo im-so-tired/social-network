@@ -1,23 +1,13 @@
 /** @type {import('next').NextConfig} */
 const path = require('path')
 const nextConfig = {
-	sassOptions: {
-		includePaths: [path.join(__dirname, 'styles')],
-	},
+	swcMinify: true,
 	env: {
 		APP_URL: process.env.REACT_APP_URL,
+		BACKEND_URL: process.env.BACKEND_URL,
 	},
-	async rewrites() {
-		return [
-			{
-				source: '/api/:path*',
-				destination: 'http://localhost:9000/api/:path*',
-			},
-			{
-				source: '/uploads/:path*',
-				destination: 'http://localhost:9000/uploads/:path*',
-			},
-		]
+	images: {
+		domains: ['localhost'],
 	},
 }
 

@@ -1,0 +1,33 @@
+.field {
+  @apply mt-6 relative bg-gray-400 px-6 py-2 rounded-3xl flex justify-between items-center border-2;
+  border-color: transparent;
+  flex: 1 0;
+
+  input {
+    @apply border-none outline-none focus:outline-none text-lg text-black w-[180px];
+    background: transparent;
+
+    &::placeholder {
+      @apply text-gray-500;
+      background-color: transparent;
+    }
+  }
+
+  .error {
+    @apply absolute left-0 bottom-[-22px] text-red-600;
+  }
+}
+
+.isFocused {
+  @apply border-primary;
+  span {
+    @apply text-primary;
+  }
+}
+
+.errorBorder {
+  @apply border-red-600;
+  span {
+    @apply text-red-600;
+  }
+}

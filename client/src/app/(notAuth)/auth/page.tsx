@@ -1,9 +1,10 @@
-import React from 'react'
+import { NextPage } from 'next'
+import Forms from './Forms'
 
-const Auth = () => {
+const Auth: NextPage = () => {
 	return (
 		<div>
-			<h1>Auth</h1>
+			<Forms />
 		</div>
 	)
 }

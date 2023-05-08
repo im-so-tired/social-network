@@ -1,0 +1,10 @@
+.formsContainer {
+  @apply flex-center h-[100vh] w-[100vw];
+
+  > div {
+    @apply bg-white rounded-common p-11 w-[700px] lg:text-xs 2xl:text-base;
+    input {
+      @apply lg:text-xs 2xl:text-base;
+    }
+  }
+}
