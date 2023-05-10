@@ -21,7 +21,10 @@ const PostCreateForm: FC = memo(() => {
 		reset,
 	} = useForm<IPostCreateData>({ mode: 'onSubmit' })
 	useEffect(() => {
-		if (isSuccess) reset()
+		if (isSuccess) {
+			setSelectedFile(null)
+			reset()
+		}
 	}, [isSuccess, reset])
 	const onSubmit = (textData: IPostCreateData) => {
 		const data = {
