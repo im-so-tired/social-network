@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import { errorMessage } from '@/utils/errorMessage'
 import { getValueLocalStorage } from '@/utils/localStorage'
@@ -58,6 +58,9 @@ const userAuthSlice = createSlice({
 				const { user } = state
 				if (!user) return
 				user.friends = payload
+			})
+			.addCase(checkAuth.rejected, (state) => {
+				state.user = null
 			})
 	},
 })

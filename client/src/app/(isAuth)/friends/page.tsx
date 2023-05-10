@@ -10,6 +10,7 @@ import { useAppSelector } from '@/hooks/redux'
 
 import { useGetFriendsQuery } from '@/redux/api/user.api'
 
+const array = [1, 2, 3, 4, 5]
 const Friends: NextPage = () => {
 	const friends = useAppSelector((state) => state.user.user?.friends)
 	const { data: users, isLoading } = useGetFriendsQuery(friends || [])
@@ -21,8 +22,8 @@ const Friends: NextPage = () => {
 				<div className="flex flex-col gap-4 mt-4">
 					{isNotFriends ? <h4>Add users as friends to see them here</h4> : null}
 					{isLoading
-						? new Array(6).map((_, i) => (
-								<Skeleton variant="rounded" height={415} key={i} />
+						? array.map((_, i) => (
+								<Skeleton variant="rounded" height={80} key={i} />
 						  ))
 						: users?.map((user) => <User key={user.id} user={user} />)}
 				</div>

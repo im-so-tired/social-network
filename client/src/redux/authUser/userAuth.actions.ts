@@ -9,7 +9,6 @@ import { UserService } from '@/services/user.service'
 import { errorMessage } from '@/utils/errorMessage'
 
 import { IAuthResponse, IEmailPassword } from '@/types/auth.interface'
-import { IUser } from '@/types/user.interface'
 
 export const register = createAsyncThunk<IAuthResponse, FormData>(
 	'auth/register',

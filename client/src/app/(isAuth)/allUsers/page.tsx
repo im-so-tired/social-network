@@ -12,6 +12,7 @@ import { useAppSelector } from '@/hooks/redux'
 import { useActions } from '@/hooks/useActions'
 import useDebounce from '@/hooks/useDebounce'
 
+const array = [1, 2, 3, 4, 5]
 const AllUsers: NextPage = () => {
 	const [firstRender, setFirstRender] = useState(true)
 	const [searchTerm, setSearchTerm] = useState('')
@@ -73,7 +74,7 @@ const AllUsers: NextPage = () => {
 				/>
 				<div className="flex flex-col gap-4 mt-4">
 					{loading && firstRender
-						? new Array(6).map((_, i) => (
+						? array.map((_, i) => (
 								<Skeleton variant="rounded" height={415} key={i} />
 						  ))
 						: users.map((user) => <User key={user.id} user={user} />)}

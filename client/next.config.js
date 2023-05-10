@@ -7,7 +7,7 @@ const nextConfig = {
 		BACKEND_URL: process.env.BACKEND_URL,
 	},
 	images: {
-		domains: ['localhost'],
+		domains: ['social-network-production-60ea.up.railway.app', 'localhost'],
 	},
 }
 
