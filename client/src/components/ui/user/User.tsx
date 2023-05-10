@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { FC, memo } from 'react'
 
 import ToggleFriendBtn from '@/components/common/profileInfo/ToggleFriendBtn'
@@ -12,12 +13,14 @@ const User: FC<{ user: IUser }> = memo(({ user }) => {
 	const isMyProfile = id === user.id
 	return (
 		<div className="flex items-center justify-between">
-			<div className="flex items-center">
-				<Avatar alt="avatar" src={user.avatarPath} size={80} />
-				<p className="ml-5">
-					{user.firstName} {user.lastName}
-				</p>
-			</div>
+			<Link href={`/profile/${user.id}`}>
+				<div className="flex items-center">
+					<Avatar alt="avatar" src={user.avatarPath} size={80} />
+					<p className="ml-5">
+						{user.firstName} {user.lastName}
+					</p>
+				</div>
+			</Link>
 			{!isMyProfile ? <ToggleFriendBtn id={user.id} /> : null}
 		</div>
 	)
