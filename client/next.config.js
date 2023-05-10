@@ -9,6 +9,15 @@ const nextConfig = {
 	images: {
 		domains: ['social-network-production-60ea.up.railway.app', 'localhost'],
 	},
+	async redirects() {
+		return [
+			{
+				source: '/',
+				destination: '/auth',
+				permanent: true,
+			},
+		]
+	},
 }
 
 module.exports = nextConfig
