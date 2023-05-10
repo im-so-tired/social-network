@@ -4,6 +4,7 @@ import {
   Get,
   HttpCode,
   Param,
+  Patch,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -50,7 +51,7 @@ export class PostsController {
     return this.postsService.create(userId, dto, image);
   }
 
-  @Post('like/:id')
+  @Patch('like/:id')
   @HttpCode(200)
   @Auth
   toggleLike(@User('id') userId: number, @Param('id') id: string) {

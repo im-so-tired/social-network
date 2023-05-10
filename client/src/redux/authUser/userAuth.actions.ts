@@ -1,3 +1,4 @@
+import { tSExportAssignment } from '@babel/types'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import toast from 'react-hot-toast'
 import thunk from 'redux-thunk'
@@ -59,7 +60,7 @@ export const checkAuth = createAsyncThunk<IAuthResponse>(
 )
 
 export const toggleFriend = createAsyncThunk<number[], number>(
-	'user/friend',
+	'authUser/friend',
 	async (friendId: number, thunkApi) => {
 		try {
 			const newFriends = await UserService.toggleFriend(friendId)

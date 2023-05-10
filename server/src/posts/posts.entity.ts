@@ -8,6 +8,8 @@ export class PostsEntity extends Base {
   @JoinColumn({ name: 'author_id' })
   author: UserEntity;
   @Column()
+  title: string;
+  @Column({ default: '' })
   message: string;
   @Column({ name: 'last_update', default: Date.now(), type: 'bigint' })
   lastUpdate: number;

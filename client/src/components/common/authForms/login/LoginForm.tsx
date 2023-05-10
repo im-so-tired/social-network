@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
+import AuthField from '@/components/common/authForms/AuthField'
 import LoginFormHeader from '@/components/common/authForms/login/RegisterFormHeader'
 import ButtonPrimary from '@/components/ui/buttonPrimary/ButtonPrimary'
-import AuthField from '@/components/ui/fields/authField/AuthField'
 
 import { useAppSelector } from '@/hooks/redux'
 import { useActions } from '@/hooks/useActions'
@@ -15,12 +15,13 @@ import { IEmailPassword } from '@/types/auth.interface'
 const LoginForm: FC<{ toggleForm: () => void }> = ({ toggleForm }) => {
 	const { error, loading } = useAppSelector((state) => state.user)
 	const { login } = useActions()
-	const { control, handleSubmit, setError } = useForm<IEmailPassword>({
-		defaultValues: {
-			email: '',
-			password: '',
-		},
-	})
+	const { control, handleSubmit, setError, clearErrors } =
+		useForm<IEmailPassword>({
+			defaultValues: {
+				email: '',
+				password: '',
+			},
+		})
 
 	useEffect(() => {
 		if (loading || !error) return

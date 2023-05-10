@@ -7,6 +7,7 @@ const postsApi = api.injectEndpoints({
 			query: (userId) => `/posts/user/${userId}`,
 			providesTags: (result = []) => [
 				...result.map(({ id }) => ({ type: 'Posts', id } as const)),
+				{ type: 'Posts' as const, id: 'LIST' },
 			],
 		}),
 		toggleLike: build.mutation<IPost, number>({
@@ -14,7 +15,7 @@ const postsApi = api.injectEndpoints({
 				url: `/posts/like/${id}`,
 				method: 'PATCH',
 			}),
-			invalidatesTags: (_result, error) => [{ type: 'Posts', id: _result?.id }],
+			invalidatesTags: (_result, error, id) => [{ type: 'Posts', id }],
 		}),
 		createPost: build.mutation<IPost, FormData>({
 			query: (data: FormData) => ({
@@ -24,7 +25,7 @@ const postsApi = api.injectEndpoints({
 			}),
 			invalidatesTags: (_result) => ['Posts'],
 		}),
-		getFriendsPosts: build.query<IPost[], any>({
+		getFriendsPosts: build.query<IPost[], number[]>({
 			query: () => `/user/posts/friends`,
 			providesTags: (result = []) => [
 				...result.map(({ id }) => ({ type: 'Posts', id } as const)),

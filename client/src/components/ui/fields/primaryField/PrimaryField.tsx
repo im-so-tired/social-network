@@ -7,13 +7,13 @@ import MaterialIcon from '@/components/ui/Icon'
 import styles from './authField.module.scss'
 import { IconTypes } from '@/types/icons.type'
 
-interface IAuthField extends InputHTMLAttributes<HTMLInputElement> {
+export interface IPrimaryField extends InputHTMLAttributes<HTMLInputElement> {
 	label: string
 	icon?: IconTypes
 	error?: FieldError
 }
 
-const AuthField: FC<IAuthField> = ({
+const PrimaryField: FC<IPrimaryField> = ({
 	label,
 	icon,
 	error,
@@ -50,4 +50,4 @@ const AuthField: FC<IAuthField> = ({
 	)
 }
 
-export default AuthField
+export default PrimaryField

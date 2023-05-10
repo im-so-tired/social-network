@@ -10,7 +10,7 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  async getAll(searchTerm?: string) {
+  async getAll(page: number, limit: number, searchTerm?: string) {
     const nameParts = searchTerm.split(' ');
     let users = [];
 
@@ -43,8 +43,17 @@ export class UserService {
         })
         .getMany();
     }
-
-    return users;
+    users.sort((a, b) => {
+      if (a.firstName > b.firstName) return 1;
+      if (a.firstName < b.firstName) return -1;
+      return 0;
+    });
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    return {
+      totalPages: Math.ceil(users.length / limit),
+      users: users.slice(startIndex, endIndex),
+    };
   }
 
   async byId(id: number) {
@@ -93,28 +102,39 @@ export class UserService {
     const posts = [];
     for (const friend of user.friends) {
       const friendProfile = await this.byIdWithPosts(friend);
-      posts.push(...friendProfile.posts);
+      const friendPosts = friendProfile.posts.map((post) => ({
+        ...post,
+        lastUpdate: +post.lastUpdate,
+        author: {
+          id: friendProfile.id,
+          fistName: friendProfile.firstName,
+          lastName: friendProfile.lastName,
+          avatarPath: friendProfile.avatarPath,
+        },
+      }));
+      posts.push(...friendPosts);
     }
-    posts.sort((a, b) => b - a);
-    return {
-      posts,
-    };
+    posts.sort((a, b) => +b.lastUpdate - +a.lastUpdate);
+    return posts;
   }
 
-  async getFriends(userId: number) {
+  async getFriends(userId: number, searchTerm: string) {
     const user = await this.byId(userId);
     const friends = [];
     for (const friend of user.friends) {
       const friendProfile = await this.byId(friend);
       friends.push(friendProfile);
     }
-    return {
-      friends,
-    };
+    return friends;
   }
 
   returnUserFields(user: UserEntity) {
     const { password, createdAt, updatedAt, ...rest } = user;
+    if (rest.posts && rest.posts.length)
+      rest.posts = rest.posts.map((post) => ({
+        ...post,
+        lastUpdate: +post.lastUpdate,
+      }));
     return rest;
   }
 }

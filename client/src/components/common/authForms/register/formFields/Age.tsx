@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { Control, Controller } from 'react-hook-form'
 
+import AuthField from '@/components/common/authForms/AuthField'
 import { IRegisterForm } from '@/components/common/authForms/register/register.interface'
-import AuthField from '@/components/ui/fields/authField/AuthField'
 
 import styles from '../../form.module.scss'
 

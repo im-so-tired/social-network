@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Param, Post, Query } from '@nestjs/common';
+import { Controller, Get, HttpCode, Param, Patch, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Auth } from '../auth/guards/auth.guard';
 import { User } from './user.decorator';
@@ -7,17 +7,21 @@ import { User } from './user.decorator';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('friend')
+  @Get('friends')
   @HttpCode(200)
   @Auth
-  getFriends(@User('id') userId: number) {
-    return this.userService.getFriends(userId);
+  getFriends(@User('id') userId: number, @Query('searchTerm') searchTerm = '') {
+    return this.userService.getFriends(userId, searchTerm);
   }
 
   @Get('all')
   @HttpCode(200)
-  getAll(@Query('searchTerm') searchTerm?: string) {
-    return this.userService.getAll(searchTerm);
+  getAll(
+    @Query('searchTerm') searchTerm?: string,
+    @Query('page') page = 1,
+    @Query('limit') limit = 20,
+  ) {
+    return this.userService.getAll(+page, +limit, searchTerm);
   }
 
   @Get(':id')
@@ -26,7 +30,7 @@ export class UserController {
     return this.userService.byId(+id);
   }
 
-  @Post('friend/:id')
+  @Patch('friend/:id')
   @HttpCode(200)
   @Auth
   toggleFriend(@User('id') userId: number, @Param('id') friendId: string) {

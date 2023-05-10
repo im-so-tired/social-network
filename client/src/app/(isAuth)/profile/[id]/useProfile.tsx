@@ -14,7 +14,7 @@ export const useProfile = () => {
 		data: posts,
 		isLoading: postsLoading,
 		isError: postsError,
-	} = useGetUserPostQuery(id)
+	} = useGetUserPostQuery(+id)
 	const isLoading = userLoading || postsLoading
 	const isError = userError || postsError
 	const sorterPosts = posts

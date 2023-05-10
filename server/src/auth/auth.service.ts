@@ -47,8 +47,8 @@ export class AuthService {
       avatarPath: avatar ? avatar.filename : 'default-avatar.jpg',
     });
 
-    const tokens = await this.issueTokenPair(newUser.id);
     const user = await this.userRepository.save(newUser);
+    const tokens = await this.issueTokenPair(newUser.id);
     return {
       user: this.userService.returnUserFields(user),
       ...tokens,

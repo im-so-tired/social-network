@@ -3,21 +3,20 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PostsEntity } from './posts.entity';
 import { Repository } from 'typeorm';
 import { PostDto } from './posts.dto';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class PostsService {
   constructor(
     @InjectRepository(PostsEntity)
     private readonly postsRepository: Repository<PostsEntity>,
+    private readonly userService: UserService,
   ) {}
 
-  async create(
-    userId: number,
-    { message }: PostDto,
-    image: Express.Multer.File,
-  ) {
+  async create(userId: number, dto: PostDto, image: Express.Multer.File) {
+    console.log(userId);
     const newPost = this.postsRepository.create({
-      message,
+      ...dto,
       lastUpdate: Date.now(),
       author: { id: userId },
       image: image ? encodeURIComponent(image.filename) : '',
@@ -27,12 +26,25 @@ export class PostsService {
   }
 
   async getUserPosts(userId: number) {
-    return await this.postsRepository.findBy({ author: { id: userId } });
+    await this.userService.byId(userId);
+    const posts = await this.postsRepository.find({
+      where: { author: { id: userId } },
+      relations: {
+        author: true,
+      },
+    });
+
+    return posts.map((post) => this.returnPostFields(post));
   }
 
   async toggleLike(userId: number, id: number) {
-    const post = await this.postsRepository.findOneBy({
-      id,
+    const post = await this.postsRepository.findOne({
+      where: {
+        id,
+      },
+      relations: {
+        author: true,
+      },
     });
     if (!post) throw new NotFoundException('Post is not found!');
     const isLiked = post.likes.some((like) => like === userId);
@@ -44,7 +56,16 @@ export class PostsService {
   }
 
   returnPostFields(post: PostsEntity) {
-    const { createdAt, updatedAt, ...rest } = post;
-    return rest;
+    const { createdAt, updatedAt, author, ...rest } = post;
+    rest.lastUpdate = +rest.lastUpdate;
+    return {
+      ...rest,
+      author: {
+        id: author.id,
+        firstName: author.firstName,
+        lastName: author.lastName,
+        avatarPath: author.avatarPath,
+      },
+    };
   }
 }

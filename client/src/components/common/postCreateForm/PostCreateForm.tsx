@@ -1,10 +1,8 @@
 import cn from 'classnames'
-import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FC, memo, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import Footer from '@/components/common/postCreateForm/Footer'
-import MaterialIcon from '@/components/ui/Icon'
-import ButtonPrimary from '@/components/ui/buttonPrimary/ButtonPrimary'
 
 import styles from './postCreateForm.module.scss'
 import { useCreatePostMutation } from '@/redux/api/posts.api'
@@ -14,8 +12,7 @@ export interface IPostCreateData {
 	message: string
 }
 
-const PostCreateForm: FC = () => {
-	const imgUploadRef = useRef<HTMLInputElement>(null)
+const PostCreateForm: FC = memo(() => {
 	const [createPost, { isSuccess }] = useCreatePostMutation()
 	const {
 		register,
@@ -81,6 +78,6 @@ const PostCreateForm: FC = () => {
 			</form>
 		</div>
 	)
-}
-
+})
+PostCreateForm.displayName = 'PostCreateForm'
 export default PostCreateForm

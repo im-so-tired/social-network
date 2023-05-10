@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { errorMessage } from '@/utils/errorMessage'
 import { getValueLocalStorage } from '@/utils/localStorage'
@@ -9,8 +9,8 @@ import {
 	logout,
 	register,
 	toggleFriend,
-} from '@/redux/user/user.actions'
-import { IUserState } from '@/redux/user/userState.interface'
+} from '@/redux/authUser/userAuth.actions'
+import { IUserState } from '@/redux/authUser/userState.interface'
 
 const initialState: IUserState = {
 	error: null,
@@ -18,7 +18,7 @@ const initialState: IUserState = {
 	user: getValueLocalStorage('user'),
 }
 
-const userSlice = createSlice({
+const userAuthSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {},
@@ -62,4 +62,4 @@ const userSlice = createSlice({
 	},
 })
 
-export const { reducer: userReducer } = userSlice
+export const { reducer: userReducer } = userAuthSlice

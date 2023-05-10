@@ -1,9 +1,12 @@
+.field {
+  @apply rounded-3xl mt-6;
+}
+
 .ageField {
   input {
     width: 75px;
   }
 }
-
 
 .cityField {
   input {
