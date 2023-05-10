@@ -4,7 +4,7 @@
   > div {
     @apply bg-white rounded-common p-11 w-[700px] lg:text-xs 2xl:text-base;
     input {
-      @apply lg:text-xs 2xl:text-base;
+      @apply lg:text-xs 2xl:text-base w-full;
     }
   }
 }

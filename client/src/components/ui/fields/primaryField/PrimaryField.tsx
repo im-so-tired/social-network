@@ -35,7 +35,7 @@ const PrimaryField: FC<IPrimaryField> = ({
 				[styles.errorBorder]: error,
 			})}
 		>
-			<div>
+			<div className="flex-grow">
 				<span className="text-gray-800 block">{label}</span>
 				<input
 					ref={inputRef}
