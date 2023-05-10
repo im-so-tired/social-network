@@ -1,0 +1,18 @@
+.post {
+  @apply island p-8 mt-4;
+
+  header {
+    @apply mb-2;
+    > a {
+      @apply inline-flex items-center gap-4
+    }
+  }
+
+  .title {
+    @apply font-bold text-lg mb-2;
+  }
+
+  section img {
+    @apply mt-3 rounded-common;
+  }
+}

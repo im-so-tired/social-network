@@ -10,7 +10,7 @@ interface IAvatarProps {
 const AvatarField: FC<IAvatarProps> = ({ selectedFile, onChange }) => {
 	return (
 		<AvatarUpload
-			label="AvatarField"
+			label="Avatar"
 			onChange={onChange}
 			alt={'avatar'}
 			src={

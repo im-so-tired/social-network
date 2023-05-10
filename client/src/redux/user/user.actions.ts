@@ -1,7 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IAuthResponse, IEmailPassword } from '@/types/auth.interface'
-import { AuthService } from '@/services/auth/auth.service'
 import toast from 'react-hot-toast'
+import thunk from 'redux-thunk'
+
+import { AuthService } from '@/services/auth/auth.service'
+import { UserService } from '@/services/user.service'
+
+import { errorMessage } from '@/utils/errorMessage'
+
+import { IAuthResponse, IEmailPassword } from '@/types/auth.interface'
+import { IUser } from '@/types/user.interface'
 
 export const register = createAsyncThunk<IAuthResponse, FormData>(
 	'auth/register',
@@ -46,6 +53,19 @@ export const checkAuth = createAsyncThunk<IAuthResponse>(
 			const response = await AuthService.getNewTokens()
 			return response.data
 		} catch (error) {
+			throw thunkApi.rejectWithValue(error)
+		}
+	}
+)
+
+export const toggleFriend = createAsyncThunk<number[], number>(
+	'user/friend',
+	async (friendId: number, thunkApi) => {
+		try {
+			const newFriends = await UserService.toggleFriend(friendId)
+			return newFriends.data
+		} catch (error) {
+			toast.error(errorMessage(error))
 			throw thunkApi.rejectWithValue(error)
 		}
 	}

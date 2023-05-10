@@ -1,8 +1,8 @@
 .sidebar {
-  @apply h-[100vh];
+  @apply h-[100vh] mr-4;
 
   .menu {
-    @apply bg-white rounded-common w-[280px] py-2;
+    @apply island w-[280px] py-2;
     .menuItem.active {
       a {
         @apply border-primary text-primary;

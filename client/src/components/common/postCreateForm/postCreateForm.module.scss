@@ -1,0 +1,37 @@
+.title {
+  @apply font-medium text-lg w-full;
+
+  &::placeholder {
+    @apply text-xl;
+  }
+}
+
+.description {
+  @apply rounded-t-none w-full;
+}
+
+.title.isError {
+  @apply border-b-red-600;
+}
+
+.footer {
+  @apply flex justify-between items-center mt-2;
+
+  > div {
+    @apply flex items-center;
+  }
+
+  .attachedImg {
+    @apply bg-gray-400 px-3 py-2 rounded-common flex;
+
+    svg:first-of-type {
+      @apply mr-2
+    }
+
+    span {
+      @apply max-w-[100px] whitespace-nowrap overflow-hidden overflow-ellipsis;
+    }
+  }
+}
+
+

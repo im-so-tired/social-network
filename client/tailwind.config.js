@@ -56,6 +56,10 @@ module.exports = {
 					width: '1200px',
 					margin: '0 auto',
 				},
+				'.island': {
+					backgroundColor: '#FFF',
+					borderRadius: '0.7rem',
+				},
 			})
 		}),
 	],

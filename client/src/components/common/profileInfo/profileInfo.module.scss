@@ -1,0 +1,38 @@
+.profileInfo {
+  @apply island;
+
+  .header {
+    @apply h-[150px] rounded-t-common;
+    background: linear-gradient(to right, #F9E3AB, #F5CFCC);
+  }
+
+  .infoContainer {
+    @apply relative bg-white rounded-b-common px-10 pt-20 pb-6;
+
+    .info {
+      @apply grid grid-cols-3 gap-y-6 gap-x-2 mt-3;
+    }
+
+    .avatar {
+      @apply absolute border-8 border-white rounded-full left-6 top-[-68px];
+    }
+
+    .profileItem {
+      h5 {
+        @apply text-gray-800 block flex items-center;
+
+        svg {
+          @apply mr-2;
+        }
+      }
+
+      span {
+        @apply font-medium;
+      }
+    }
+
+    .toggleFriendBtn {
+      @apply absolute right-16 top-8;
+    }
+  }
+}

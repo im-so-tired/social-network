@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 
 import Avatar from '@/components/ui/avatar/Avatar'
 import DropDown from '@/components/ui/dropDown/DropDown'
@@ -10,14 +10,18 @@ import { useAppSelector } from '@/hooks/redux'
 import { useActions } from '@/hooks/useActions'
 
 const Profile: FC = () => {
-	const user = useAppSelector((state) => state.user.user)
+	const id = useAppSelector((state) => state.user.user?.id)
+	const avatarPath = useAppSelector((state) => state.user.user?.avatarPath)
+	const firstName = useAppSelector((state) => state.user.user?.firstName)
+	const lastName = useAppSelector((state) => state.user.user?.lastName)
+
 	const { push } = useRouter()
 	const { logout } = useActions()
 	return (
 		<div className="relative">
 			<DropDown
 				options={[
-					{ label: 'My profile', onClick: () => push(`/profile/${user?.id}`) },
+					{ label: 'My profile', onClick: () => push(`/profile/${id}`) },
 					{ label: 'Logout', onClick: () => logout() },
 				]}
 				className="w-[130px]"
@@ -26,12 +30,12 @@ const Profile: FC = () => {
 					<div className="flex items-center">
 						<Avatar
 							alt="avatar"
-							src={user?.avatarPath!}
+							src={avatarPath!}
 							size={40}
 							className="mr-2.5"
 						/>
 						<span>
-							{user?.firstName} {user?.lastName}
+							{firstName} {lastName}
 						</span>
 					</div>
 				</button>

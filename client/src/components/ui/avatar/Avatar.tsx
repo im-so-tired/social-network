@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { FC } from 'react'
 
 import styles from './avatar.module.scss'
+import { AVATAR_URL } from '@/api/interseptor'
 
 interface IAvatar {
 	alt: string
@@ -27,7 +28,7 @@ const Avatar: FC<IAvatar> = ({ size, className, ...rest }) => {
 		>
 			<Image
 				{...rest}
-				src={`${process.env.BACKEND_URL}/upload/avatars/${rest.src}`}
+				src={`${AVATAR_URL}/${rest.src}`}
 				fill
 				// sizes={`${size}px`}
 			/>

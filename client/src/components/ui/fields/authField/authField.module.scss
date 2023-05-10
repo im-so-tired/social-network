@@ -12,10 +12,6 @@
       background-color: transparent;
     }
   }
-
-  .error {
-    @apply absolute left-0 bottom-[-22px] text-red-600;
-  }
 }
 
 .isFocused {

@@ -1,3 +1,5 @@
+import { IPost } from '@/types/post.interface'
+
 export interface IUser {
 	id: number
 	email: string
@@ -9,4 +11,8 @@ export interface IUser {
 	university?: string
 	gender: 'male' | 'female'
 	friends: number[]
+}
+
+export interface IUserWithPosts extends IUser {
+	posts: IPost[]
 }

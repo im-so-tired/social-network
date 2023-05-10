@@ -2,6 +2,8 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 export const API_URL = `${process.env.BACKEND_URL}/api`
+export const IMAGE_URL = `${process.env.BACKEND_URL}/upload/attachedImages`
+export const AVATAR_URL = `${process.env.BACKEND_URL}/upload/avatars`
 
 export const getContentType = (type: string = 'application/json') => {
 	return {

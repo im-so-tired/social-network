@@ -45,7 +45,7 @@ const AuthField: FC<IAuthField> = ({
 				/>
 			</div>
 			{icon && <MaterialIcon name={icon} />}
-			{error && <span className={styles.error}>{error.message}</span>}
+			{error && <span className="errorMessage">{error.message}</span>}
 		</div>
 	)
 }

@@ -5,7 +5,7 @@ import Profile from '@/components/common/mainLayout/header/Profile'
 
 const Header: FC = () => {
 	return (
-		<header className="bg-white py-4 mb-4">
+		<header className="h-[75px] fixed top-0 left-0 w-full bg-white py-4 mb-4 z-50">
 			<div className="container flex justify-between">
 				<div className="flex items-center">
 					<Image alt="logo" src="/logo.png" height={34} width={34} />

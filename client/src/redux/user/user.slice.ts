@@ -3,7 +3,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { errorMessage } from '@/utils/errorMessage'
 import { getValueLocalStorage } from '@/utils/localStorage'
 
-import { checkAuth, login, logout, register } from '@/redux/user/user.actions'
+import {
+	checkAuth,
+	login,
+	logout,
+	register,
+	toggleFriend,
+} from '@/redux/user/user.actions'
 import { IUserState } from '@/redux/user/userState.interface'
 
 const initialState: IUserState = {
@@ -47,6 +53,11 @@ const userSlice = createSlice({
 			.addCase(logout.fulfilled, (state) => {
 				state.loading = false
 				state.user = null
+			})
+			.addCase(toggleFriend.fulfilled, (state, { payload }) => {
+				const { user } = state
+				if (!user) return
+				user.friends = payload
 			})
 	},
 })
