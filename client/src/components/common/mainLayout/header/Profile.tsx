@@ -15,14 +15,20 @@ const Profile: FC = () => {
 	const firstName = useAppSelector((state) => state.user.user?.firstName)
 	const lastName = useAppSelector((state) => state.user.user?.lastName)
 
-	const { push } = useRouter()
+	const { replace, push } = useRouter()
 	const { logout } = useActions()
 	return (
 		<div className="relative">
 			<DropDown
 				options={[
 					{ label: 'My profile', onClick: () => push(`/profile/${id}`) },
-					{ label: 'Logout', onClick: () => logout() },
+					{
+						label: 'Logout',
+						onClick: () => {
+							logout()
+							replace('/auth')
+						},
+					},
 				]}
 				className="w-[130px]"
 			>
