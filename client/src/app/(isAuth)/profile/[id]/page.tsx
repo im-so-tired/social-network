@@ -39,7 +39,7 @@ const Profile: NextPage = () => {
 					{isMyProfile && <PostCreateForm />}
 					<section>
 						{isMyProfile && !sorterPosts.length ? (
-							<div className="island mt-4">
+							<div className="island p-6 mt-4">
 								<h4 className="text-lg font-medium">
 									Write posts and they will appear here
 								</h4>
