@@ -8,8 +8,6 @@ server/node_modules
 client/.env
 server/.env
 
-server/upload/avatars
-server/upload/attachedImages
 
 client/dist
 server/dist
