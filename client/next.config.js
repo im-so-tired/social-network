@@ -7,7 +7,11 @@ const nextConfig = {
 		BACKEND_URL: process.env.BACKEND_URL,
 	},
 	images: {
-		domains: ['social-network-production-60ea.up.railway.app', 'localhost'],
+		domains: [
+			'social-network-production-60ea.up.railway.app',
+			'localhost',
+			'social-network-production-91ee.up.railway.app',
+		],
 	},
 	async redirects() {
 		return [
