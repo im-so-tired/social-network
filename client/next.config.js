@@ -22,6 +22,13 @@ const nextConfig = {
 			},
 		]
 	},
+	// webpack: (config, option) => {
+	// 	config.external.push({
+	// 		bufferutil: 'bufferutil',
+	// 		'utf-8-validate': 'utf-8-validate',
+	// 	})
+	// 	return config
+	// },
 }
 
 module.exports = nextConfig
