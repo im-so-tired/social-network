@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { PostsModule } from './posts/posts.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { path } from 'app-root-path';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { path } from 'app-root-path';
     AuthModule,
     UserModule,
     PostsModule,
+    MessagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

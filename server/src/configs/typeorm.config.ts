@@ -12,5 +12,5 @@ export const getTypeOrmConfig = async (
   password: configService.get('PASSWORD'),
   autoLoadEntities: true,
   synchronize: true,
-  ssl: true,
+  // ssl: true,
 });
